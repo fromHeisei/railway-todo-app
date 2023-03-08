@@ -12,6 +12,7 @@ module.exports = {
   },
   plugins: ["react", "jest"],
   rules: {
+    "no-use-before-define": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
   },
