@@ -21,6 +21,7 @@ export const SignUp = () => {
   const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const onSignUp = () => {
+    console.log(`${url}/users`);
     const data = {
       email: email,
       name: name,

@@ -32,6 +32,7 @@ export const SignIn = () => {
   };
 
   if (auth) return <Navigate to="/" />;
+  console.log("Hello");
 
   return (
     <div>
