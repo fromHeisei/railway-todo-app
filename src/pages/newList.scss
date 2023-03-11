@@ -21,3 +21,17 @@
   height: 40px;
   border-radius: 5px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .new-list {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .new-list {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

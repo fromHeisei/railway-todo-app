@@ -36,3 +36,17 @@
 .error-message {
   color: #ff3333;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .edit-task {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .edit-task {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
