@@ -15,5 +15,14 @@ module.exports = {
     "no-use-before-define": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  globals: {
+    process: true,
   },
 };

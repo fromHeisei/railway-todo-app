@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { url } from "../const";
@@ -11,15 +11,18 @@ export const NewTask = () => {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [limit, setLimit] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleLimitChange = (e) => setLimit(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
     const data = {
       title: title,
+      limit: limit,
       detail: detail,
       done: false,
     };
@@ -80,6 +83,15 @@ export const NewTask = () => {
             type="text"
             onChange={handleTitleChange}
             className="new-task-title"
+          />
+          <br />
+          <label>期限</label>
+          <br />
+          <textarea
+            type="text"
+            onChange={handleLimitChange}
+            className="new-task-date"
+            placeholder="例）2022-07-15T11:11:11Z"
           />
           <br />
           <label>詳細</label>

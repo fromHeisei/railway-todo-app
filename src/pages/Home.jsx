@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import dayjs from "dayjs";
 import { Header } from "../components/Header";
 import { url } from "../const";
 import "./home.scss";
@@ -63,6 +64,7 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
+
   return (
     <div>
       <Header />
@@ -164,8 +166,10 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
-              {task.done ? "完了" : "未完了"}
+              期限日：{dayjs(task.limit).format("YYYY/MM/DD")}&emsp;残り{" "}
+              {dayjs(task.limit).diff(dayjs(), "day")}日
             </Link>
+            <br />
           </li>
         ))}
     </ul>
