@@ -1,28 +1,35 @@
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { url } from "../const";
 import { Header } from "../components/Header";
 import "./newTask.scss";
 import { useNavigate } from "react-router-dom";
 
+dayjs.extend(utc);
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
-  const [limit, setLimit] = useState("");
+  const [limitDate, setLimitDate] = useState("");
+  const [limitTime, setLimitTime] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleLimitChange = (e) => setLimit(e.target.value);
+  const handleLimitDateChange = (e) => setLimitDate(e.target.value);
+  const handleLimitTimeChange = (e) => setLimitTime(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
+    const limit = new Date(`${limitDate}T${limitTime}`);
+    console.log(dayjs(limit).utc().format());
     const data = {
       title: title,
-      limit: limit,
+      limit: dayjs(limit).utc().format(),
       detail: detail,
       done: false,
     };
@@ -87,16 +94,23 @@ export const NewTask = () => {
           <br />
           <label>期限</label>
           <br />
-          <textarea
-            type="text"
-            onChange={handleLimitChange}
+          <input
+            type="date"
+            onChange={handleLimitDateChange}
             className="new-task-date"
-            placeholder="例）2022-07-15T11:11:11Z"
+            value={limitDate}
+          />
+
+          <input
+            type="time"
+            onChange={handleLimitTimeChange}
+            className="new-task-date"
+            value={limitTime}
           />
           <br />
           <label>詳細</label>
           <br />
-          <textarea
+          <input
             type="text"
             onChange={handleDetailChange}
             className="new-task-detail"

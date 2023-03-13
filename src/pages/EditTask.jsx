@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import axios from "axios";
+import dayjs from "dayjs";
 import { useCookies } from "react-cookie";
 import { url } from "../const";
 import { useNavigate, useParams } from "react-router-dom";
@@ -42,7 +43,7 @@ export const EditTask = () => {
         setErrorMessage(`更新に失敗しました。${err}`);
       });
   };
-
+  console.log(dayjs(limit).format("YYYY-MM-DDThh:mm"));
   const onDeleteTask = () => {
     axios
       .delete(`${url}/lists/${listId}/tasks/${taskId}`, {
@@ -96,10 +97,10 @@ export const EditTask = () => {
           <label>期限</label>
           <br />
           <input
-            type="text"
+            type="datetime-local"
             onChange={handleLimitChange}
             className="edit-task-limit"
-            value={limit}
+            value={dayjs(limit).format("YYYY-MM-DDThh:mm")}
           />
           <br />
           <label>詳細</label>
